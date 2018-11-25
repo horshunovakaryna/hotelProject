@@ -45,7 +45,8 @@ namespace hotel.DataBase
             {
                 entity.HasKey(e => e.IdCustomer);
                 entity.Property(e => e.IdCustomer).IsRequired().HasColumnName("id_customer");
-                entity.Property(e => e.IdCard).HasColumnName("id_card");
+                entity.HasOne(f => f.DiscountCard).WithOne().HasForeignKey("id_card");
+                //entity.Property(e => e.IdCard).HasColumnName("id_card");
                 entity.Property(e => e.FirstName).IsRequired().HasColumnName("first_name");
                 entity.Property(e => e.SecondName).IsRequired().HasColumnName("second_name");
                 entity.Property(e => e.PassportInformation).IsRequired().HasColumnName("passport_information");             

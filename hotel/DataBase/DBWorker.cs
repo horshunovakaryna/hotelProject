@@ -24,7 +24,7 @@ namespace hotel.DataBase
             }
         }
 
-        public List<Customer> SelectCustomer(String secondName)
+        public static List<Customer> SelectCustomer(String secondName)
         {
             List<Customer> customers = new List<Customer>();
             Customer customer = new Customer();

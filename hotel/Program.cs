@@ -22,7 +22,7 @@ namespace hotel
             // Console.Read();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BookForm());
+            Application.Run(new Form2());
 
         }  
     }

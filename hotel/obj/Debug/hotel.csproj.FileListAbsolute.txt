@@ -68,3 +68,4 @@ C:\Users\Karina\source\repos\hotel\hotel\bin\Debug\Microsoft.EntityFrameworkCore
 C:\Users\Karina\source\repos\hotel\hotel\bin\Debug\Microsoft.EntityFrameworkCore.Relational.xml
 C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.BookForm.resources
 C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Form1.resources
+C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.Form2.resources

@@ -9,7 +9,7 @@ namespace hotel.Component
     class Customer
     {
         public int IdCustomer { get; set; }
-        public int IdCard { get; set; }
+        public DiscountCard  DiscountCard { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string PassportInformation { get; set; } 
