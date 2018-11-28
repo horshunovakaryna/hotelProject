@@ -20,9 +20,10 @@ namespace hotel
             //DBWorker.GetDBConnection();
             //DBWorker.Name();
             // Console.Read();
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form2());
+             Application.EnableVisualStyles();
+             Application.SetCompatibleTextRenderingDefault(false);
+             Application.Run(new Form2());
+           // DBWorker.Nam();
 
         }  
     }

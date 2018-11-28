@@ -24,6 +24,19 @@ namespace hotel.DataBase
             }
         }
 
+        public static void Nam()
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                var query = (from customerdb in context.Customer
+                             where customerdb.SecondName == "test"
+                             select customerdb).ToList();
+
+                foreach (Customer cust in query)
+                        Console.WriteLine($"{cust.FirstName} {cust.SecondName}");
+            }
+        }
+
         public static List<Customer> SelectCustomer(String secondName)
         {
             List<Customer> customers = new List<Customer>();

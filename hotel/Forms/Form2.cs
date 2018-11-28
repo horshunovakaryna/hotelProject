@@ -24,15 +24,17 @@ namespace hotel.Forms
         {
             List<Customer> customers = new List<Customer>();
             customers = DBWorker.SelectCustomer(textBox3.Text);
-            string n = textBox3.Text;
-            Console.Write(n);
             foreach (Customer cust in customers)
-                Console.Write(cust.FirstName, cust.SecondName);
+                dataGridView2.Columns.AddRange(
+        new DataGridViewTextBoxColumn() { Name = "clmName", HeaderText = "Имя", DataPropertyName = "firstname" },
+        new DataGridViewTextBoxColumn() { Name = "clmAmount", HeaderText = "Фамилия", DataPropertyName = "secondname" });
+            dataGridView2.DataSource = customers;
         }
 
         private void label23_Click(object sender, EventArgs e)
         {
 
         }
+
     }
 }
