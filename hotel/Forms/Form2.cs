@@ -35,6 +35,8 @@ namespace hotel.Forms
             {
                 dataGridView2.Rows.Clear();
             }
+            JoinCustomer joinCustomer = DBWorker.SelectCustomerCard(1);
+            textBox4.Text = joinCustomer.CardNumber;
         }
 
         private void label23_Click(object sender, EventArgs e)

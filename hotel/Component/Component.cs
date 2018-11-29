@@ -45,4 +45,20 @@ namespace hotel.Component
         public int Capacity { get; set; }
         public int NumberOfRoom { get; set; }
     }
+
+    class JoinCustomer
+    {
+        public int IdCustomer { get; set; }
+        public string CardNumber { get; set; }
+
+        public JoinCustomer()
+        {
+
+        }
+        public JoinCustomer(int id, string cardNumber)
+        {
+            this.IdCustomer = id;
+            this.CardNumber = cardNumber;
+        }
+    }
 }

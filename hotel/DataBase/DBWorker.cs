@@ -52,5 +52,22 @@ namespace hotel.DataBase
             }
             return customers;
         }
+
+        public static JoinCustomer SelectCustomerCard(int id)
+        {
+            JoinCustomer joinCustomer = new JoinCustomer();
+            using (MyDBContext context = new MyDBContext())
+            {
+                var query = (from customerdb in context.Customer
+                             join discountdb in context.DiscountCard
+                             on customerdb.id_card equals discountdb.IdCard
+                             where customerdb.IdCustomer == id
+                             select new { customerdb.IdCustomer, discountdb.NumberCard }).Single();
+                joinCustomer.IdCustomer = query.IdCustomer;
+                joinCustomer.CardNumber = query.NumberCard;
+            }
+            
+            return joinCustomer;
+        }
     }
 }

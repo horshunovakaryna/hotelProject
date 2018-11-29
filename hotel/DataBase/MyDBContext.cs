@@ -54,6 +54,7 @@ namespace hotel.DataBase
 
             modelBuilder.Entity<DiscountCard>(entity =>
             {
+                entity.ToTable("discount");
                 entity.HasKey(e => e.IdCard);
                 entity.Property(e => e.IdCard).IsRequired().HasColumnName("id_card");
                 entity.Property(e => e.NumberCard).IsRequired().HasColumnName("number_card");
