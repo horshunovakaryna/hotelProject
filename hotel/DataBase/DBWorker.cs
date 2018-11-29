@@ -44,7 +44,7 @@ namespace hotel.DataBase
             using (MyDBContext context = new MyDBContext())
             {
                 var query = (from customerdb in context.Customer
-                             where customerdb.SecondName == secondName
+                             where customerdb.SecondName.ToLower().Contains(secondName.ToLower())
                              select customerdb).ToList();
 
                 foreach (Customer cust in query)
