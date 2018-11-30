@@ -26,7 +26,7 @@ namespace hotel.Component
     {
         public int IdCard { get; set; }
         public string NumberCard { get; set; }
-        public string Discount { get; set; }
+        public float Discount { get; set; }
     }
 
     class Employee
@@ -50,15 +50,17 @@ namespace hotel.Component
     {
         public int IdCustomer { get; set; }
         public string CardNumber { get; set; }
+        public float Discount { get; set; }
 
         public JoinCustomer()
         {
 
         }
-        public JoinCustomer(int id, string cardNumber)
+        public JoinCustomer(int id, string cardNumber,float discount)
         {
             this.IdCustomer = id;
             this.CardNumber = cardNumber;
+            this.Discount = discount;
         }
     }
 }

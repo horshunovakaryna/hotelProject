@@ -53,7 +53,7 @@ namespace hotel.DataBase
             return customers;
         }
 
-        public static JoinCustomer SelectCustomerCard(int id)
+        public static JoinCustomer SelectCustomerCard(int? id)
         {
             JoinCustomer joinCustomer = new JoinCustomer();
             using (MyDBContext context = new MyDBContext())
@@ -62,9 +62,10 @@ namespace hotel.DataBase
                              join discountdb in context.DiscountCard
                              on customerdb.id_card equals discountdb.IdCard
                              where customerdb.IdCustomer == id
-                             select new { customerdb.IdCustomer, discountdb.NumberCard }).Single();
+                             select new { customerdb.IdCustomer, discountdb.NumberCard, discountdb.Discount }).Single();
                 joinCustomer.IdCustomer = query.IdCustomer;
                 joinCustomer.CardNumber = query.NumberCard;
+                joinCustomer.Discount = query.Discount;
             }
             
             return joinCustomer;
