@@ -70,3 +70,4 @@ C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.BookForm.resource
 C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Form1.resources
 C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.Form2.resources
 C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.Information.resources
+C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.AddCard.resources

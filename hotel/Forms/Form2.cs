@@ -27,7 +27,7 @@ namespace hotel.Forms
             dataGridView2.AllowUserToAddRows = false;
             dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
             dataGridView2.DefaultCellStyle.SelectionForeColor = Color.White;
-           
+            comboBox1.Text = "Выберите категорию";
             string[] category = new string[] { "Эконом", "Стандарт", "Полуюкс", "Люкс", "Президентский номер" };
             comboBox1.Items.AddRange(category);
         }
@@ -48,16 +48,15 @@ namespace hotel.Forms
                 else
                 {
                     id = cust.id_card;
-                    JoinCustomer joinCustomer = DBWorker.SelectCustomerCard(id);
-                    dataGridView2.Rows.Add(cust.FirstName, cust.SecondName, cust.PassportInformation,
-                        joinCustomer.CardNumber, joinCustomer.Discount +" %");
+                    dataGridView2.Rows.Add(
+                        cust.FirstName, 
+                        cust.SecondName, 
+                        cust.PassportInformation, 
+                        cust.DiscountCard.NumberCard, 
+                        cust.DiscountCard.Discount + "%"
+                        );
                 }
             }
-            if(customers.Count == 0)
-            {
-                dataGridView2.Rows.Clear();
-            }
-
             dataGridView2.ClearSelection();
         }
 
@@ -78,7 +77,9 @@ namespace hotel.Forms
 
         private void button8_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Information inform = new Information();
+            inform.ShowDialog();
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)

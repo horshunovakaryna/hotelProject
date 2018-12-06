@@ -10,7 +10,7 @@ namespace hotel.Component
     {
         public int IdCustomer { get; set; }
         public int? id_card { get; set; }
-        public DiscountCard  DiscountCard { get; set; }
+        public DiscountCard DiscountCard { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string PassportInformation { get; set; } 
@@ -26,7 +26,7 @@ namespace hotel.Component
     {
         public int IdCard { get; set; }
         public string NumberCard { get; set; }
-        public float Discount { get; set; }
+        public int Discount { get; set; }
     }
 
     class Employee
@@ -46,7 +46,7 @@ namespace hotel.Component
         public int NumberOfRoom { get; set; }
     }
 
-    class JoinCustomer
+    /*class JoinCustomer
     {
         public int IdCustomer { get; set; }
         public string CardNumber { get; set; }
@@ -62,5 +62,5 @@ namespace hotel.Component
             this.CardNumber = cardNumber;
             this.Discount = discount;
         }
-    }
+    }*/
 }

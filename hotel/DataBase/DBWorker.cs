@@ -10,7 +10,7 @@ namespace hotel.DataBase
 {
     class DBWorker
     {
-        
+
         public static void Name()
         {
             using (MyDBContext context = new MyDBContext())
@@ -33,27 +33,61 @@ namespace hotel.DataBase
                              select customerdb).ToList();
 
                 foreach (Customer cust in query)
-                        Console.WriteLine($"{cust.FirstName} {cust.SecondName}");
+                    Console.WriteLine($"{cust.FirstName} {cust.SecondName}");
             }
         }
 
         public static List<Customer> SelectCustomer(String secondName)
         {
             List<Customer> customers = new List<Customer>();
-            Customer customer = new Customer();
+
             using (MyDBContext context = new MyDBContext())
             {
+                Customer customer = new Customer();
                 var query = (from customerdb in context.Customer
                              where customerdb.SecondName.ToLower().Contains(secondName.ToLower())
-                             select customerdb).ToList();
-
+                             join discountdb in context.DiscountCard
+                             on customerdb.id_card equals discountdb.IdCard into disc
+                             from d in disc.DefaultIfEmpty()
+                             select new Customer()
+                             {
+                                 IdCustomer = customerdb.IdCustomer,
+                                 FirstName = customerdb.FirstName,
+                                 SecondName = customerdb.SecondName,
+                                 PassportInformation = customerdb.PassportInformation,
+                                 id_card = customerdb.id_card == null? null:customerdb.id_card,
+                                  DiscountCard =
+                                  new DiscountCard()
+                                  {
+                                      IdCard = d.IdCard == null ? 0 : d.IdCard,
+                                      NumberCard = d.NumberCard == null ? " " : d.NumberCard,
+                                      Discount = d.Discount == null ? 0 : d.Discount
+                                  }
+                             }).ToList();
                 foreach (Customer cust in query)
+                {
                     customers.Add(cust);
+                    Console.WriteLine(cust.DiscountCard);
+                }
+                    
             }
             return customers;
         }
+        /* List<Customer> customers = new List<Customer>();
+         Customer customer = new Customer();
+         using (MyDBContext context = new MyDBContext())
+         {
+             var query = (from customerdb in context.Customer
+                          where customerdb.SecondName.ToLower().Contains(secondName.ToLower())
+                          select customerdb).ToList();
 
-        public static JoinCustomer SelectCustomerCard(int? id)
+             foreach (Customer cust in query)
+                 customers.Add(cust);
+         }
+         return customers;*/
+
+
+        /*public static JoinCustomer SelectCustomerCard(int? id)
         {
             JoinCustomer joinCustomer = new JoinCustomer();
             using (MyDBContext context = new MyDBContext())
@@ -67,8 +101,23 @@ namespace hotel.DataBase
                 joinCustomer.CardNumber = query.NumberCard;
                 joinCustomer.Discount = query.Discount;
             }
-            
+
             return joinCustomer;
-        }
+        }*/
+
+        /*public static void InsertCard(string card, float discountValue)
+        {
+            DiscountCard card1 = new DiscountCard();
+            using (MyDBContext context = new MyDBContext())
+            {
+
+                card1.NumberCard = card;
+                card1.Discount = discountValue;
+
+                context.Add(card);
+                context.SaveChanges();
+            /
+        }*/
     }
 }
+

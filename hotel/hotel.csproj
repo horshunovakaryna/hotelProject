@@ -147,6 +147,12 @@
     <Compile Include="Component\Component.cs" />
     <Compile Include="DataBase\DBWorker.cs" />
     <Compile Include="DataBase\MyDBContext.cs" />
+    <Compile Include="Forms\AddCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddCard.Designer.cs">
+      <DependentUpon>AddCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\BookForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\AddCard.resx">
+      <DependentUpon>AddCard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\BookForm.resx">
       <DependentUpon>BookForm.cs</DependentUpon>
     </EmbeddedResource>
