@@ -17,14 +17,9 @@ namespace hotel
         [STAThread]
         static void Main(string[] args)
         {
-            //DBWorker.GetDBConnection();
-            //DBWorker.Name();
-            // Console.Read();
-             Application.EnableVisualStyles();
-             Application.SetCompatibleTextRenderingDefault(false);
-             Application.Run(new Form2());            
-           // DBWorker.Nam();
-
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form2());
         }  
     }
 }

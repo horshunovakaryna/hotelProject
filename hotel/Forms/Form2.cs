@@ -20,10 +20,13 @@ namespace hotel.Forms
                InitializeComponent();
             dataGridView2.Columns.AddRange(
        new DataGridViewTextBoxColumn() { Name = "clmFirstName", HeaderText = "Имя", DataPropertyName = "firstname", },
-       new DataGridViewTextBoxColumn() { Name = "clmSecondName", HeaderText = "Фамилия", DataPropertyName = "secondname"},
-       new DataGridViewTextBoxColumn() { Name = "clmPassport", HeaderText = "Паспортные данные", DataPropertyName = "passportinformation"},
+       new DataGridViewTextBoxColumn() { Name = "clmSecondName", HeaderText = "Фамилия", DataPropertyName = "secondname" },
+       new DataGridViewTextBoxColumn() { Name = "clmPassport", HeaderText = "Паспортные данные", DataPropertyName = "passportinformation" },
        new DataGridViewTextBoxColumn() { Name = "clmCardNumber", HeaderText = "Номер карты", DataPropertyName = "numbercard" },
-       new DataGridViewTextBoxColumn() { Name = "clmDiscount", HeaderText = "Скидка", DataPropertyName = "discount" });
+       new DataGridViewTextBoxColumn() { Name = "clmDiscount", HeaderText = "Скидка", DataPropertyName = "discount" },
+       new DataGridViewTextBoxColumn() { Name = "clmId", HeaderText = "ID", DataPropertyName = "id" });
+            dataGridView2.Columns["clmId"].Visible = false;
+
             dataGridView2.AllowUserToAddRows = false;
             dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
             dataGridView2.DefaultCellStyle.SelectionForeColor = Color.White;
@@ -37,26 +40,28 @@ namespace hotel.Forms
             dataGridView2.Rows.Clear();
             List<Customer> customers = new List<Customer>();
             customers = DBWorker.SelectCustomer(textBox3.Text);
-            int? id;
+            //int? id;
             foreach (Customer cust in customers)
             {
-                if (cust.id_card == null)
+                if (cust.IdCard == null)
                 {
                     dataGridView2.Rows.Add(cust.FirstName, cust.SecondName, cust.PassportInformation,
-                   "-", "-");
+                   "-", "-",cust.IdCustomer);
                 }
                 else
                 {
-                    id = cust.id_card;
+                    //id = cust.IdCard;
                     dataGridView2.Rows.Add(
                         cust.FirstName, 
                         cust.SecondName, 
                         cust.PassportInformation, 
                         cust.DiscountCard.NumberCard, 
-                        cust.DiscountCard.Discount + "%"
+                        cust.DiscountCard.Discount + "%",
+                        cust.IdCustomer
                         );
                 }
             }
+         
             dataGridView2.ClearSelection();
         }
 
@@ -85,5 +90,52 @@ namespace hotel.Forms
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void addCard_Click(object sender, EventArgs e)
+        {
+            Customer selectedCustomer = GetSelectedCustomer();
+            if (selectedCustomer.IdCustomer != 0)
+            {
+                if (!DBWorker.CheckCustomerCard(selectedCustomer.IdCustomer))
+                {
+                    MessageBox.Show("У клиента уже есть дисконтная карта", "Сообщение", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    this.Hide();
+                    AddCard addCard = new AddCard();
+                    addCard.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите клиента");
+            }
+
+        }
+
+        private  Customer GetSelectedCustomer()
+        {
+            Customer customer = new Customer();
+            Int32 selectedRowCount = dataGridView2.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        customer.IdCustomer = (int)row.Cells[5].Value;
+                        customer.FirstName = (string)row.Cells[0].Value;
+                        customer.SecondName = (string)row.Cells[1].Value;
+                    }
+                }
+            }
+            return customer;
+        } 
     }
 }

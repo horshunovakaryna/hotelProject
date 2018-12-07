@@ -28,19 +28,175 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.addNewCard = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.chooseDiscount = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.newCardNumber = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cardNumberText = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // addNewCard
+            // 
+            this.addNewCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addNewCard.Location = new System.Drawing.Point(122, 244);
+            this.addNewCard.Name = "addNewCard";
+            this.addNewCard.Size = new System.Drawing.Size(160, 35);
+            this.addNewCard.TabIndex = 0;
+            this.addNewCard.Text = "Добавить карту";
+            this.addNewCard.UseVisualStyleBackColor = true;
+            this.addNewCard.Click += new System.EventHandler(this.addNewCard_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(45, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Фамилия";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(45, 90);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Имя";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(168, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 20);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "label3";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(45, 135);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(109, 20);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Номер карты";
+            // 
+            // chooseDiscount
+            // 
+            this.chooseDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.chooseDiscount.FormattingEnabled = true;
+            this.chooseDiscount.Location = new System.Drawing.Point(172, 180);
+            this.chooseDiscount.Name = "chooseDiscount";
+            this.chooseDiscount.Size = new System.Drawing.Size(180, 28);
+            this.chooseDiscount.TabIndex = 6;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(45, 180);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 20);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Скидка";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(168, 90);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 20);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "label6";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // newCardNumber
+            // 
+            this.newCardNumber.BackColor = System.Drawing.Color.Red;
+            this.newCardNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.newCardNumber.Location = new System.Drawing.Point(172, 128);
+            this.newCardNumber.Name = "newCardNumber";
+            this.newCardNumber.Size = new System.Drawing.Size(180, 35);
+            this.newCardNumber.TabIndex = 9;
+            this.newCardNumber.Text = "Сгенирировать номер карты еще раз";
+            this.newCardNumber.UseVisualStyleBackColor = false;
+            this.newCardNumber.Click += new System.EventHandler(this.newCardNumber_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(175, 143);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 20);
+            this.label7.TabIndex = 10;
+            // 
+            // cardNumberText
+            // 
+            this.cardNumberText.AutoSize = true;
+            this.cardNumberText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cardNumberText.Location = new System.Drawing.Point(168, 135);
+            this.cardNumberText.Name = "cardNumberText";
+            this.cardNumberText.Size = new System.Drawing.Size(51, 20);
+            this.cardNumberText.TabIndex = 11;
+            this.cardNumberText.Text = "label8";
             // 
             // AddCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 235);
+            this.ClientSize = new System.Drawing.Size(400, 307);
+            this.Controls.Add(this.cardNumberText);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.newCardNumber);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.chooseDiscount);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.addNewCard);
             this.Name = "AddCard";
             this.Text = "AddCard";
+            this.Load += new System.EventHandler(this.AddCard_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Button addNewCard;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox chooseDiscount;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Button newCardNumber;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label cardNumberText;
     }
 }

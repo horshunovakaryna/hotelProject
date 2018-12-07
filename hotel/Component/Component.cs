@@ -9,7 +9,7 @@ namespace hotel.Component
     class Customer
     {
         public int IdCustomer { get; set; }
-        public int? id_card { get; set; }
+        public int? IdCard { get; set; }
         public DiscountCard DiscountCard { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
@@ -18,7 +18,7 @@ namespace hotel.Component
         override
         public String ToString()
         {
-            return FirstName + SecondName;
+            return IdCustomer +FirstName + SecondName;
         }
     }
 
@@ -46,21 +46,25 @@ namespace hotel.Component
         public int NumberOfRoom { get; set; }
     }
 
-    /*class JoinCustomer
+    class Reserving
     {
+        public int IdReserving { get; set; }
         public int IdCustomer { get; set; }
-        public string CardNumber { get; set; }
-        public float Discount { get; set; }
+        public Customer Customer { get; set; }
+        public int IdEmployee { get; set; }
+        public Employee Employee { get; set; }
+        public int IdRoom { get; set; }
+        public Room Room { get; set; }
+        public DateTime CheckIn { get; set; }
+        public DateTime CheckOut { get; set; }
+        public bool Active { get; set; }
+    }
 
-        public JoinCustomer()
-        {
+    class TypeRoom
+    {
+        public int IdType { get; set; }
+        public string Categoria { get; set; }
+        public float Price { get; set; }
+    }
 
-        }
-        public JoinCustomer(int id, string cardNumber,float discount)
-        {
-            this.IdCustomer = id;
-            this.CardNumber = cardNumber;
-            this.Discount = discount;
-        }
-    }*/
 }

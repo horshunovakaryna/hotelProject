@@ -37,7 +37,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.button9 = new System.Windows.Forms.Button();
+            this.addCard = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -77,6 +77,7 @@
             this.button6.TabIndex = 1;
             this.button6.Text = "Добавить клиента";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
@@ -157,16 +158,17 @@
             this.dataGridView2.TabIndex = 25;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
-            // button9
+            // addCard
             // 
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button9.Location = new System.Drawing.Point(12, 183);
-            this.button9.Name = "button9";
-            this.button9.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button9.Size = new System.Drawing.Size(155, 53);
-            this.button9.TabIndex = 26;
-            this.button9.Text = "Добавить карту";
-            this.button9.UseVisualStyleBackColor = true;
+            this.addCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addCard.Location = new System.Drawing.Point(12, 183);
+            this.addCard.Name = "addCard";
+            this.addCard.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.addCard.Size = new System.Drawing.Size(155, 53);
+            this.addCard.TabIndex = 26;
+            this.addCard.Text = "Добавить карту";
+            this.addCard.UseVisualStyleBackColor = true;
+            this.addCard.Click += new System.EventHandler(this.addCard_Click);
             // 
             // button10
             // 
@@ -311,7 +313,7 @@
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.button10);
-            this.Controls.Add(this.button9);
+            this.Controls.Add(this.addCard);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.label26);
@@ -367,7 +369,7 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button addCard;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.ComboBox comboBox1;
