@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using hotel.Component;
 using hotel.DataBase;
+using hotel;
 
 namespace hotel.Forms
 {
@@ -37,31 +38,7 @@ namespace hotel.Forms
 
         private void button5_Click(object sender, EventArgs e)
         {
-            dataGridView2.Rows.Clear();
-            List<Customer> customers = new List<Customer>();
-            customers = DBWorker.SelectCustomer(textBox3.Text);
-            //int? id;
-            foreach (Customer cust in customers)
-            {
-                if (cust.IdCard == null)
-                {
-                    dataGridView2.Rows.Add(cust.FirstName, cust.SecondName, cust.PassportInformation,
-                   "-", "-",cust.IdCustomer);
-                }
-                else
-                {
-                    //id = cust.IdCard;
-                    dataGridView2.Rows.Add(
-                        cust.FirstName, 
-                        cust.SecondName, 
-                        cust.PassportInformation, 
-                        cust.DiscountCard.NumberCard, 
-                        cust.DiscountCard.Discount + "%",
-                        cust.IdCustomer
-                        );
-                }
-            }
-         
+            FillGrid();
             dataGridView2.ClearSelection();
         }
 
@@ -108,8 +85,10 @@ namespace hotel.Forms
                 else
                 {
                     this.Hide();
-                    AddCard addCard = new AddCard();
+                    AddCard addCard = new AddCard(selectedCustomer);
                     addCard.ShowDialog();
+                    FillGrid();
+                    this.Show();
                 }
             }
             else
@@ -137,5 +116,31 @@ namespace hotel.Forms
             }
             return customer;
         } 
+
+        private void FillGrid()
+        {
+            dataGridView2.Rows.Clear();
+            List<Customer> customers = new List<Customer>();
+            customers = DBWorker.SelectCustomer(textBox3.Text);      
+            foreach (Customer cust in customers)
+            {
+                if (cust.IdCard == null)
+                {
+                    dataGridView2.Rows.Add(cust.FirstName, cust.SecondName, cust.PassportInformation,
+                   "-", "-", cust.IdCustomer);
+                }
+                else
+                {
+                        dataGridView2.Rows.Add(
+                        cust.FirstName,
+                        cust.SecondName,
+                        cust.PassportInformation,
+                        cust.DiscountCard.NumberCard,
+                        cust.DiscountCard.Discount + "%",
+                        cust.IdCustomer
+                        );
+                }
+            }
+        }
     }
 }

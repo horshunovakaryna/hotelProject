@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hotel.Component
 {
-    class Customer
+    public class Customer
     {
         public int IdCustomer { get; set; }
         public int? IdCard { get; set; }
@@ -22,23 +22,14 @@ namespace hotel.Component
         }
     }
 
-    class DiscountCard
+    public class DiscountCard
     {
         public int IdCard { get; set; }
         public string NumberCard { get; set; }
         public int Discount { get; set; }
     }
 
-    class Employee
-    {
-        public int IdEmployee { get; set; }
-        public string FirstName { get; set; }
-        public string SecondName { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-    }
-
-    class Room
+    public class Room
     {
         public int IdRoom { get; set; }
         public int IdType { get; set; }
@@ -46,13 +37,11 @@ namespace hotel.Component
         public int NumberOfRoom { get; set; }
     }
 
-    class Reserving
+    public class Reserving
     {
         public int IdReserving { get; set; }
         public int IdCustomer { get; set; }
         public Customer Customer { get; set; }
-        public int IdEmployee { get; set; }
-        public Employee Employee { get; set; }
         public int IdRoom { get; set; }
         public Room Room { get; set; }
         public DateTime CheckIn { get; set; }
@@ -60,7 +49,7 @@ namespace hotel.Component
         public bool Active { get; set; }
     }
 
-    class TypeRoom
+    public class TypeRoom
     {
         public int IdType { get; set; }
         public string Categoria { get; set; }

@@ -65,14 +65,15 @@ namespace hotel.DataBase
             }
         }
 
-        public static bool ValidateCardNumber(string cardNumber)
+        /*public static bool ValidateCardNumber(string cardNumber)
         {
             using (MyDBContext context = new MyDBContext())
             {
                 var query = (from card in context.DiscountCard
                              select card).ToList();
 
-                foreach (DiscountCard card in query) {
+                foreach (DiscountCard card in query)
+                {
                     if (card.NumberCard == cardNumber)
                     {
                         return false;
@@ -80,7 +81,7 @@ namespace hotel.DataBase
                 }
             }
             return true;
-        }
+        }*/
 
         public static bool CheckCustomerCard(int id)
         {
@@ -93,6 +94,25 @@ namespace hotel.DataBase
                 }
             }
             return true;
+        }
+
+        public static string GenerateCardNumber()
+        {
+            int card = 1234567890;
+
+            using (MyDBContext context = new MyDBContext())
+            {
+                DiscountCard discountCard = context.DiscountCard.LastOrDefault();
+                if (discountCard == null)
+                {
+                    return card.ToString();
+                }
+                else
+                {
+                    card += discountCard.IdCard;
+                    return card.ToString();
+                }
+            }
         }
     }
     

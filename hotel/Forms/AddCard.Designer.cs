@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.addNewCard = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,11 +36,8 @@
             this.chooseDiscount = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.newCardNumber = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.cardNumberText = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // addNewCard
@@ -124,22 +120,6 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "label6";
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // newCardNumber
-            // 
-            this.newCardNumber.BackColor = System.Drawing.Color.Red;
-            this.newCardNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.newCardNumber.Location = new System.Drawing.Point(172, 128);
-            this.newCardNumber.Name = "newCardNumber";
-            this.newCardNumber.Size = new System.Drawing.Size(180, 35);
-            this.newCardNumber.TabIndex = 9;
-            this.newCardNumber.Text = "Сгенирировать номер карты еще раз";
-            this.newCardNumber.UseVisualStyleBackColor = false;
-            this.newCardNumber.Click += new System.EventHandler(this.newCardNumber_Click);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -166,7 +146,6 @@
             this.ClientSize = new System.Drawing.Size(400, 307);
             this.Controls.Add(this.cardNumberText);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.newCardNumber);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.chooseDiscount);
@@ -178,7 +157,6 @@
             this.Name = "AddCard";
             this.Text = "AddCard";
             this.Load += new System.EventHandler(this.AddCard_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,8 +172,6 @@
         private System.Windows.Forms.ComboBox chooseDiscount;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.Button newCardNumber;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label cardNumberText;
     }

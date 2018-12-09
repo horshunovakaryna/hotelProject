@@ -86,7 +86,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(155, 53);
             this.button7.TabIndex = 2;
-            this.button7.Text = "Изменить данные клиента";
+            this.button7.Text = "Удалить клиента";
             this.button7.UseVisualStyleBackColor = true;
             // 
             // button8

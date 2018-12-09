@@ -14,7 +14,6 @@ namespace hotel.DataBase
     class MyDBContext : DbContext
     {
         public DbSet<Customer> Customer { get; set; }
-        public DbSet<Employee> Employee { get; set; }
         public DbSet<DiscountCard> DiscountCard { get; set; }
         public DbSet<Room> Room { get; set; }
         public DbSet<Reserving> Reserving { get; set; }
@@ -33,40 +32,10 @@ namespace hotel.DataBase
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Customer>();
-            modelBuilder.Entity<Employee>();
             modelBuilder.Entity<DiscountCard>();
             modelBuilder.Entity<Room>();
             modelBuilder.Entity<Reserving>();
             modelBuilder.Entity<TypeRoom>();
-
-            //modelBuilder.Entity<Customer>().HasIndex(u => u.IdCustomer);
-            /*modelBuilder.Entity<Customer>().HasKey(u => u.IdCustomer);
-
-            //modelBuilder.Entity<Employee>().HasIndex(u => u.IdEmployee);
-            modelBuilder.Entity<Employee>().HasKey(u => u.IdEmployee);
-
-            //modelBuilder.Entity<DiscountCard>().HasIndex(u => u.IdCard);
-            modelBuilder.Entity<DiscountCard>().HasKey(u => u.IdCard);
-
-            //modelBuilder.Entity<Room>().HasIndex(u => u.IdRoom);
-            modelBuilder.Entity<Room>().HasKey(u => u.IdRoom);
-
-            //modelBuilder.Entity<Reserving>().HasIndex(u => u.IdReserving);
-            modelBuilder.Entity<Reserving>().HasKey(u => u.IdReserving);
-
-            ///modelBuilder.Entity<TypeRoom>().HasIndex(u => u.IdType);
-            modelBuilder.Entity<TypeRoom>().HasKey(u => u.IdType);*/
-
-
-            /*base.OnModelCreating(modelBuilder);*/
-            modelBuilder.Entity<Employee>(entity =>
-            {
-                entity.HasKey(e => e.IdEmployee);             
-                entity.Property(e => e.FirstName).IsRequired();
-                entity.Property(e => e.SecondName).IsRequired();
-                entity.Property(e => e.Login).IsRequired();
-                entity.Property(e => e.Password).IsRequired();
-            });
 
             modelBuilder.Entity<Customer>(entity =>
             {
@@ -95,7 +64,6 @@ namespace hotel.DataBase
             {
                 entity.HasKey(e => e.IdReserving);
                 entity.Property(e => e.IdCustomer).IsRequired();
-                entity.Property(e => e.IdEmployee).IsRequired();
                 entity.Property(e => e.IdRoom).IsRequired();
                 entity.Property(e => e.CheckIn).IsRequired();
                 entity.Property(e => e.CheckOut).IsRequired();

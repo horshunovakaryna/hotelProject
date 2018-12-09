@@ -6,11 +6,12 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using hotel.DataBase;
 using hotel.Forms;
+using hotel.Component;
 
 namespace hotel
 {
     static class Program
-    {
+    {       
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
