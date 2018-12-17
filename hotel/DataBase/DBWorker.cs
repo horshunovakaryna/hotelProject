@@ -28,7 +28,7 @@ namespace hotel.DataBase
                                  FirstName = customerdb.FirstName,
                                  SecondName = customerdb.SecondName,
                                  PassportInformation = customerdb.PassportInformation,
-                                 IdCard = customerdb.IdCard == null ? null : customerdb.IdCard,
+                                 IdCard = customerdb.IdCard == null ? 0 : customerdb.IdCard,
                                  DiscountCard =
                                   new DiscountCard()
                                   {
@@ -47,42 +47,53 @@ namespace hotel.DataBase
             return customers;
         }
 
-        public static void InsertCard(string numberCard, int discountValue, int idCustomer)
+        public static void InsertCard(DiscountCard discountCard, int idCustomer)
         {
             using (MyDBContext context = new MyDBContext())
             {
                 Customer customer = context.Customer.Find(idCustomer);
                 if (customer != null && customer.IdCard == null)
                 {
-                    DiscountCard card = new DiscountCard();
-                    card.NumberCard = numberCard;
-                    card.Discount = discountValue;
-                    context.DiscountCard.Add(card);
-                    customer.IdCard = card.IdCard;
+                    context.DiscountCard.Add(discountCard);
+                    customer.IdCard = discountCard.IdCard;
                     context.Update(customer);
                     context.SaveChanges();
                 }
             }
         }
 
-        /*public static bool ValidateCardNumber(string cardNumber)
+        public static void InsertCustomer(Customer customer)
         {
             using (MyDBContext context = new MyDBContext())
             {
-                var query = (from card in context.DiscountCard
-                             select card).ToList();
-
-                foreach (DiscountCard card in query)
-                {
-                    if (card.NumberCard == cardNumber)
-                    {
-                        return false;
-                    }
-                }
+                context.Customer.Add(customer);
+                context.SaveChanges();
             }
-            return true;
-        }*/
+        }
 
+        public static void UpdateCard(int? idCard, int discount)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                DiscountCard discountCard = context.DiscountCard.Find(idCard);
+                discountCard.Discount = discount;
+                context.Update(discountCard);
+                context.SaveChanges();
+            }
+        }
+        
+
+        public static string GetLastCustomer()
+        {
+            string secondName = "";
+            using (MyDBContext context = new MyDBContext())
+            {
+                Customer customer = context.Customer.LastOrDefault();
+                secondName += customer.SecondName;
+            }
+            return secondName;
+        }
+        
         public static bool CheckCustomerCard(int id)
         {
             using (MyDBContext context = new MyDBContext())

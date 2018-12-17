@@ -43,7 +43,7 @@
             // addNewCard
             // 
             this.addNewCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addNewCard.Location = new System.Drawing.Point(122, 244);
+            this.addNewCard.Location = new System.Drawing.Point(118, 242);
             this.addNewCard.Name = "addNewCard";
             this.addNewCard.Size = new System.Drawing.Size(160, 35);
             this.addNewCard.TabIndex = 0;

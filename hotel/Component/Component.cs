@@ -13,7 +13,9 @@ namespace hotel.Component
         public DiscountCard DiscountCard { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
-        public string PassportInformation { get; set; } 
+        public string PassportInformation { get; set; }
+
+        public List<Reserving> Reservings { get; set; }
 
         override
         public String ToString()
@@ -32,21 +34,32 @@ namespace hotel.Component
     public class Room
     {
         public int IdRoom { get; set; }
-        public int IdType { get; set; }
+        //public int IdType { get; set; }
         public int Capacity { get; set; }
         public int NumberOfRoom { get; set; }
+
+        public int IdType { get; set; }
+        public TypeRoom TypeRoom { get; set; }
+
+        public List<Reserving> Reservings { get; set; }
     }
 
     public class Reserving
     {
         public int IdReserving { get; set; }
-        public int IdCustomer { get; set; }
-        public Customer Customer { get; set; }
-        public int IdRoom { get; set; }
-        public Room Room { get; set; }
+        //public int IdCustomer { get; set; }
+       // public List<Customer> Customers { get; set; }
+        //public int IdRoom { get; set; }
+        
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
         public bool Active { get; set; }
+
+        public int IdRoom { get; set; }
+        public Room Room { get; set; }
+
+        public int IdCustomer { get; set; }
+        public Customer Customer { get; set; }
     }
 
     public class TypeRoom
@@ -54,6 +67,8 @@ namespace hotel.Component
         public int IdType { get; set; }
         public string Categoria { get; set; }
         public float Price { get; set; }
+
+        public List<Room> Rooms { get; set; }    
     }
 
 }

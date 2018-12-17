@@ -42,7 +42,8 @@ namespace hotel.DataBase
                 entity.HasKey(e => e.IdCustomer);
                 entity.Property(e => e.FirstName).IsRequired();
                 entity.Property(e => e.SecondName).IsRequired();
-                entity.Property(e => e.PassportInformation).IsRequired();             
+                entity.Property(e => e.PassportInformation).IsRequired();
+                entity.HasMany(e => e.Reservings).WithOne(e => e.Customer).IsRequired();
             });
 
             modelBuilder.Entity<DiscountCard>(entity =>
@@ -55,16 +56,16 @@ namespace hotel.DataBase
             modelBuilder.Entity<Room>(entity =>
             {
                 entity.HasKey(e => e.IdRoom);                
-                entity.Property(e => e.IdType).IsRequired();
+               //entity.Property(e => e.IdType).IsRequired();
                 entity.Property(e => e.Capacity).IsRequired();
                 entity.Property(e => e.NumberOfRoom).IsRequired();
+                entity.HasMany(e => e.Reservings).WithOne(e => e.Room).IsRequired();
+
             });
 
             modelBuilder.Entity<Reserving>(entity =>
             {
-                entity.HasKey(e => e.IdReserving);
-                entity.Property(e => e.IdCustomer).IsRequired();
-                entity.Property(e => e.IdRoom).IsRequired();
+                entity.HasKey(e => e.IdReserving);               
                 entity.Property(e => e.CheckIn).IsRequired();
                 entity.Property(e => e.CheckOut).IsRequired();
                 entity.Property(e => e.Active).IsRequired();
@@ -75,6 +76,7 @@ namespace hotel.DataBase
                 entity.HasKey(e => e.IdType);               
                 entity.Property(e => e.Categoria).IsRequired();
                 entity.Property(e => e.Price).IsRequired();
+                entity.HasMany(e => e.Rooms).WithOne(e => e.TypeRoom).IsRequired();
             });
         }
     }

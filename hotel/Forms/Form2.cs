@@ -18,15 +18,17 @@ namespace hotel.Forms
 
         public Form2()
         {
-               InitializeComponent();
+            InitializeComponent();
             dataGridView2.Columns.AddRange(
        new DataGridViewTextBoxColumn() { Name = "clmFirstName", HeaderText = "Имя", DataPropertyName = "firstname", },
        new DataGridViewTextBoxColumn() { Name = "clmSecondName", HeaderText = "Фамилия", DataPropertyName = "secondname" },
        new DataGridViewTextBoxColumn() { Name = "clmPassport", HeaderText = "Паспортные данные", DataPropertyName = "passportinformation" },
        new DataGridViewTextBoxColumn() { Name = "clmCardNumber", HeaderText = "Номер карты", DataPropertyName = "numbercard" },
        new DataGridViewTextBoxColumn() { Name = "clmDiscount", HeaderText = "Скидка", DataPropertyName = "discount" },
-       new DataGridViewTextBoxColumn() { Name = "clmId", HeaderText = "ID", DataPropertyName = "id" });
+       new DataGridViewTextBoxColumn() { Name = "clmId", HeaderText = "ID", DataPropertyName = "id" },
+       new DataGridViewTextBoxColumn() { Name = "clmIdCard", HeaderText = "IDCard", DataPropertyName = "idCard" });
             dataGridView2.Columns["clmId"].Visible = false;
+            dataGridView2.Columns["clmIdCard"].Visible = false;
 
             dataGridView2.AllowUserToAddRows = false;
             dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
@@ -38,7 +40,9 @@ namespace hotel.Forms
 
         private void button5_Click(object sender, EventArgs e)
         {
-            FillGrid();
+
+            string searchText = textBox3.Text;
+            FillGrid(searchText);
             dataGridView2.ClearSelection();
         }
 
@@ -54,7 +58,7 @@ namespace hotel.Forms
 
         private void Form2_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -70,7 +74,12 @@ namespace hotel.Forms
 
         private void button6_Click(object sender, EventArgs e)
         {
-            
+
+            this.Hide();
+            AddCustomer addCard = new AddCustomer();
+            addCard.ShowDialog();
+            FillGrid(DBWorker.GetLastCustomer());
+            this.Show();
         }
 
         private void addCard_Click(object sender, EventArgs e)
@@ -87,7 +96,7 @@ namespace hotel.Forms
                     this.Hide();
                     AddCard addCard = new AddCard(selectedCustomer);
                     addCard.ShowDialog();
-                    FillGrid();
+                    FillGrid(textBox3.Text);
                     this.Show();
                 }
             }
@@ -98,7 +107,7 @@ namespace hotel.Forms
 
         }
 
-        private  Customer GetSelectedCustomer()
+        private Customer GetSelectedCustomer()
         {
             Customer customer = new Customer();
             Int32 selectedRowCount = dataGridView2.Rows.GetRowCount(DataGridViewElementStates.Selected);
@@ -115,32 +124,70 @@ namespace hotel.Forms
                 }
             }
             return customer;
-        } 
+        }
 
-        private void FillGrid()
+        private DiscountCard GetSelectedCard()
+        {
+            DiscountCard discountCard = new DiscountCard();
+            Int32 selectedRowCount = dataGridView2.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Selected && (int)row.Cells[6].Value !=0)
+                    {
+                        discountCard.NumberCard = (string)row.Cells[3].Value;
+                        discountCard.Discount = Convert.ToInt32(row.Cells[4].Value);
+                        discountCard.IdCard = (int)row.Cells[6].Value;
+                    }
+                }
+            }           
+            return discountCard;
+        }
+
+        private void FillGrid(string searchText)
         {
             dataGridView2.Rows.Clear();
             List<Customer> customers = new List<Customer>();
-            customers = DBWorker.SelectCustomer(textBox3.Text);      
+            customers = DBWorker.SelectCustomer(searchText);
             foreach (Customer cust in customers)
             {
-                if (cust.IdCard == null)
+                if (cust.IdCard == 0)
                 {
                     dataGridView2.Rows.Add(cust.FirstName, cust.SecondName, cust.PassportInformation,
-                   "-", "-", cust.IdCustomer);
+                   "-", "-", cust.IdCustomer,0);
                 }
                 else
                 {
-                        dataGridView2.Rows.Add(
-                        cust.FirstName,
-                        cust.SecondName,
-                        cust.PassportInformation,
-                        cust.DiscountCard.NumberCard,
-                        cust.DiscountCard.Discount + "%",
-                        cust.IdCustomer
+                    dataGridView2.Rows.Add(
+                    cust.FirstName,
+                    cust.SecondName,
+                    cust.PassportInformation,
+                    cust.DiscountCard.NumberCard,
+                    cust.DiscountCard.Discount,
+                    cust.IdCustomer,
+                    cust.IdCard
                         );
                 }
             }
         }
+
+        private void UpdateCard_Click(object sender, EventArgs e)
+        {
+            DiscountCard selectedCard = GetSelectedCard();
+            if (selectedCard.IdCard != 0)
+            {
+                this.Hide();
+                UpdateCard addCard = new UpdateCard(selectedCard);
+                addCard.ShowDialog();
+                FillGrid(textBox3.Text);
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("У клиента нет карты!");
+            }
+        }
+        
     }
 }

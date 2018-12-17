@@ -30,8 +30,10 @@ namespace hotel.Forms
 
         private void addNewCard_Click(object sender, EventArgs e)
         {
-            DBWorker.InsertCard(cardNumberText.Text, Convert.ToInt32(chooseDiscount.Text),
-                newCustomer.IdCustomer);
+            DiscountCard discountCard = new DiscountCard();
+            discountCard.NumberCard = cardNumberText.Text;
+            discountCard.Discount = Convert.ToInt32(chooseDiscount.Text);
+            DBWorker.InsertCard(discountCard,newCustomer.IdCustomer);
             this.Hide();
             MessageBox.Show("Дисконтная карта добавленна", "Сообщение", MessageBoxButtons.OK);
         }

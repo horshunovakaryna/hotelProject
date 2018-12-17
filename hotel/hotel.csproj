@@ -175,11 +175,11 @@
     <Compile Include="Forms\AddCard.Designer.cs">
       <DependentUpon>AddCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\BookForm.cs">
+    <Compile Include="Forms\AddCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\BookForm.Designer.cs">
-      <DependentUpon>BookForm.cs</DependentUpon>
+    <Compile Include="Forms\AddCustomer.Designer.cs">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
@@ -199,13 +199,19 @@
     <Compile Include="Forms\Information.Designer.cs">
       <DependentUpon>Information.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UpdateCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UpdateCard.Designer.cs">
+      <DependentUpon>UpdateCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AddCard.resx">
       <DependentUpon>AddCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\BookForm.resx">
-      <DependentUpon>BookForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AddCustomer.resx">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -215,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Information.resx">
       <DependentUpon>Information.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UpdateCard.resx">
+      <DependentUpon>UpdateCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

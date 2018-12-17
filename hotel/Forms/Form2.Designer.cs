@@ -38,7 +38,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.addCard = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.UpdateCard = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -170,16 +170,17 @@
             this.addCard.UseVisualStyleBackColor = true;
             this.addCard.Click += new System.EventHandler(this.addCard_Click);
             // 
-            // button10
+            // UpdateCard
             // 
-            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button10.Location = new System.Drawing.Point(12, 253);
-            this.button10.Name = "button10";
-            this.button10.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button10.Size = new System.Drawing.Size(155, 53);
-            this.button10.TabIndex = 27;
-            this.button10.Text = "Изменить данные карты";
-            this.button10.UseVisualStyleBackColor = true;
+            this.UpdateCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UpdateCard.Location = new System.Drawing.Point(12, 253);
+            this.UpdateCard.Name = "UpdateCard";
+            this.UpdateCard.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.UpdateCard.Size = new System.Drawing.Size(155, 53);
+            this.UpdateCard.TabIndex = 27;
+            this.UpdateCard.Text = "Изменить данные карты";
+            this.UpdateCard.UseVisualStyleBackColor = true;
+            this.UpdateCard.Click += new System.EventHandler(this.UpdateCard_Click);
             // 
             // button11
             // 
@@ -312,7 +313,7 @@
             this.Controls.Add(this.dateTimePicker3);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.button10);
+            this.Controls.Add(this.UpdateCard);
             this.Controls.Add(this.addCard);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label27);
@@ -370,7 +371,7 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button addCard;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button UpdateCard;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox4;
