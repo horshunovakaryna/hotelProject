@@ -14,6 +14,8 @@ namespace hotel.Forms
 {
     public partial class UpdateCard : Form
     {
+        int[] availableDiscounts = new int[] { 3, 10, 15, 20 };
+
         private DiscountCard newDiscountCard;
         public UpdateCard(DiscountCard discountCard)
         {
@@ -21,13 +23,19 @@ namespace hotel.Forms
             newDiscountCard = discountCard;
             numberCardLabel.Text = newDiscountCard.NumberCard;
             comboBoxDiscount.Text = newDiscountCard.Discount.ToString();
-            string[] discount = new string[] { "3", "10", "15", "20" };
-            comboBoxDiscount.Items.AddRange(discount);           
+
+            int index = Array.IndexOf(availableDiscounts, newDiscountCard.Discount);
+            int[] customerDiscount = new int[availableDiscounts.Length - index];
+            Array.Copy(
+                availableDiscounts,
+                index,
+                customerDiscount, 0, availableDiscounts.Length - index);
+
+            comboBoxDiscount.Items.AddRange(customerDiscount.Select(d => d.ToString()).ToArray());        
         }
 
         private void UpdateDiscount_Click(object sender, EventArgs e)
-        {
-            //DiscountCard discountCard = new DiscountCard();
+        {           
             int discount = Convert.ToInt32(comboBoxDiscount.Text);
             DBWorker.UpdateCard(newDiscountCard.IdCard, discount);
             this.Hide();

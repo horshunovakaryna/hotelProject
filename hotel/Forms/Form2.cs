@@ -174,7 +174,7 @@ namespace hotel.Forms
 
         private void UpdateCard_Click(object sender, EventArgs e)
         {
-            DiscountCard selectedCard = GetSelectedCard();
+            DiscountCard selectedCard = GetSelectedCard();           
             if (selectedCard.IdCard != 0)
             {
                 this.Hide();

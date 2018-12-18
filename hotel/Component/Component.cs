@@ -37,7 +37,13 @@ namespace hotel.Component
         //public int IdType { get; set; }
         public int Capacity { get; set; }
         public int NumberOfRoom { get; set; }
+        public double Price { get; set; }
 
+        //override
+       /*public String ToString()
+        {
+            return IdRoom+" " + Capacity+" " + NumberOfRoom + Price.ToString();
+        }*/
         public int IdType { get; set; }
         public TypeRoom TypeRoom { get; set; }
 
@@ -66,9 +72,16 @@ namespace hotel.Component
     {
         public int IdType { get; set; }
         public string Categoria { get; set; }
-        public float Price { get; set; }
+       
 
-        public List<Room> Rooms { get; set; }    
+        public List<Room> Rooms { get; set; }
+
+        /*override
+        public String ToString()
+        {
+            return IdType + Categoria +Rooms[0].ToString();
+        }*/
+
     }
 
 }

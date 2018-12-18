@@ -59,6 +59,7 @@ namespace hotel.DataBase
                //entity.Property(e => e.IdType).IsRequired();
                 entity.Property(e => e.Capacity).IsRequired();
                 entity.Property(e => e.NumberOfRoom).IsRequired();
+                entity.Property(e => e.Price).IsRequired();
                 entity.HasMany(e => e.Reservings).WithOne(e => e.Room).IsRequired();
 
             });
@@ -75,7 +76,7 @@ namespace hotel.DataBase
             {
                 entity.HasKey(e => e.IdType);               
                 entity.Property(e => e.Categoria).IsRequired();
-                entity.Property(e => e.Price).IsRequired();
+              
                 entity.HasMany(e => e.Rooms).WithOne(e => e.TypeRoom).IsRequired();
             });
         }
