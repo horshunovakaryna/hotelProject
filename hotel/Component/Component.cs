@@ -40,10 +40,11 @@ namespace hotel.Component
         public double Price { get; set; }
 
         //override
-       /*public String ToString()
+       public String ToString()
         {
-            return IdRoom+" " + Capacity+" " + NumberOfRoom + Price.ToString();
-        }*/
+            return  "№"+NumberOfRoom +" "+Capacity+"-x местный " + TypeRoom.Categoria +
+                " "+ Price.ToString() + "грн";
+        }
         public int IdType { get; set; }
         public TypeRoom TypeRoom { get; set; }
 
@@ -66,6 +67,8 @@ namespace hotel.Component
 
         public int IdCustomer { get; set; }
         public Customer Customer { get; set; }
+
+    
     }
 
     public class TypeRoom

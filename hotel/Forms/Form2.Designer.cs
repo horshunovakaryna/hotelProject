@@ -31,8 +31,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button_5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.deleteCustomer = new System.Windows.Forms.Button();
+            this.buttonBook = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
@@ -41,18 +41,18 @@
             this.UpdateCard = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textCapacity = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
-            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.dateCheckIn = new System.Windows.Forms.DateTimePicker();
+            this.dateCheckOut = new System.Windows.Forms.DateTimePicker();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.label17 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.availableRoomGrid = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.availableRoomGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // button_5
@@ -79,26 +79,27 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button7
+            // deleteCustomer
             // 
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button7.Location = new System.Drawing.Point(12, 115);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(155, 53);
-            this.button7.TabIndex = 2;
-            this.button7.Text = "Удалить клиента";
-            this.button7.UseVisualStyleBackColor = true;
+            this.deleteCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.deleteCustomer.Location = new System.Drawing.Point(12, 115);
+            this.deleteCustomer.Name = "deleteCustomer";
+            this.deleteCustomer.Size = new System.Drawing.Size(155, 53);
+            this.deleteCustomer.TabIndex = 2;
+            this.deleteCustomer.Text = "Удалить клиента";
+            this.deleteCustomer.UseVisualStyleBackColor = true;
+            this.deleteCustomer.Click += new System.EventHandler(this.deleteCustomer_Click);
             // 
-            // button8
+            // buttonBook
             // 
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button8.Location = new System.Drawing.Point(510, 488);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(160, 55);
-            this.button8.TabIndex = 3;
-            this.button8.Text = "Забронировать";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.buttonBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonBook.Location = new System.Drawing.Point(510, 488);
+            this.buttonBook.Name = "buttonBook";
+            this.buttonBook.Size = new System.Drawing.Size(160, 55);
+            this.buttonBook.TabIndex = 3;
+            this.buttonBook.Text = "Забронировать";
+            this.buttonBook.UseVisualStyleBackColor = true;
+            this.buttonBook.Click += new System.EventHandler(this.button8_Click);
             // 
             // textBox3
             // 
@@ -202,14 +203,15 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(200, 28);
             this.comboBox1.TabIndex = 58;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // textBox4
+            // textCapacity
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox4.Location = new System.Drawing.Point(391, 400);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(200, 26);
-            this.textBox4.TabIndex = 57;
+            this.textCapacity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textCapacity.Location = new System.Drawing.Point(391, 400);
+            this.textCapacity.Name = "textCapacity";
+            this.textCapacity.Size = new System.Drawing.Size(200, 26);
+            this.textCapacity.TabIndex = 57;
             // 
             // label35
             // 
@@ -231,21 +233,21 @@
             this.label34.TabIndex = 55;
             this.label34.Text = "Количество гостей";
             // 
-            // dateTimePicker4
+            // dateCheckIn
             // 
-            this.dateTimePicker4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker4.Location = new System.Drawing.Point(391, 330);
-            this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(200, 26);
-            this.dateTimePicker4.TabIndex = 54;
+            this.dateCheckIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateCheckIn.Location = new System.Drawing.Point(391, 330);
+            this.dateCheckIn.Name = "dateCheckIn";
+            this.dateCheckIn.Size = new System.Drawing.Size(200, 26);
+            this.dateCheckIn.TabIndex = 54;
             // 
-            // dateTimePicker3
+            // dateCheckOut
             // 
-            this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker3.Location = new System.Drawing.Point(391, 365);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(200, 26);
-            this.dateTimePicker3.TabIndex = 53;
+            this.dateCheckOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateCheckOut.Location = new System.Drawing.Point(391, 365);
+            this.dateCheckOut.Name = "dateCheckOut";
+            this.dateCheckOut.Size = new System.Drawing.Size(200, 26);
+            this.dateCheckOut.TabIndex = 53;
             // 
             // label21
             // 
@@ -267,25 +269,6 @@
             this.label20.TabIndex = 51;
             this.label20.Text = "Дата заезда";
             // 
-            // listView1
-            // 
-            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.listView1.Location = new System.Drawing.Point(625, 351);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(234, 112);
-            this.listView1.TabIndex = 59;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label17.Location = new System.Drawing.Point(621, 328);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(156, 20);
-            this.label17.TabIndex = 60;
-            this.label17.Text = "Доступные номера:";
-            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonShadow;
@@ -297,20 +280,29 @@
             this.groupBox1.TabIndex = 61;
             this.groupBox1.TabStop = false;
             // 
+            // availableRoomGrid
+            // 
+            this.availableRoomGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.availableRoomGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.availableRoomGrid.Location = new System.Drawing.Point(625, 330);
+            this.availableRoomGrid.Name = "availableRoomGrid";
+            this.availableRoomGrid.RowHeadersVisible = false;
+            this.availableRoomGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.availableRoomGrid.Size = new System.Drawing.Size(230, 133);
+            this.availableRoomGrid.TabIndex = 62;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(884, 561);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textCapacity);
             this.Controls.Add(this.label35);
             this.Controls.Add(this.label34);
-            this.Controls.Add(this.dateTimePicker4);
-            this.Controls.Add(this.dateTimePicker3);
+            this.Controls.Add(this.dateCheckIn);
+            this.Controls.Add(this.dateCheckOut);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.UpdateCard);
@@ -319,17 +311,19 @@
             this.Controls.Add(this.label27);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
+            this.Controls.Add(this.buttonBook);
+            this.Controls.Add(this.deleteCustomer);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button_5);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.availableRoomGrid);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.availableRoomGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,8 +358,8 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button button_5;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button deleteCustomer;
+        private System.Windows.Forms.Button buttonBook;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
@@ -374,15 +368,14 @@
         private System.Windows.Forms.Button UpdateCard;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textCapacity;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.DateTimePicker dateTimePicker4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.DateTimePicker dateCheckIn;
+        private System.Windows.Forms.DateTimePicker dateCheckOut;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridView availableRoomGrid;
     }
 }

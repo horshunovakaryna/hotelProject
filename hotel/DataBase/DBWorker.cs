@@ -55,6 +55,14 @@ namespace hotel.DataBase
             }
         }
 
+        public static Room FindRoomById(int id)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                return context.Room.Find(id);
+            }
+        }
+
         public static void InsertCard(DiscountCard discountCard, int idCustomer)
         {
             using (MyDBContext context = new MyDBContext())
@@ -69,6 +77,22 @@ namespace hotel.DataBase
                 }
             }
         }
+
+        public static void Resrving(Customer customer, Room room, DateTime date1, DateTime date2, bool active)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                Reserving reserving = new Reserving();
+                reserving.IdCustomer = customer.IdCustomer;
+                reserving.IdRoom = room.IdRoom;
+                reserving.CheckIn = date1;
+                reserving.CheckOut = date2;
+                reserving.Active = active;
+                context.Reserving.Add(reserving);
+                context.SaveChanges();
+            }
+        }
+
 
         public static void InsertCustomer(Customer customer)
         {
@@ -134,39 +158,76 @@ namespace hotel.DataBase
             }
         }
 
-        public static void SearchRoom(int capacity, string type)
+        public static List<Room> SearchRoom(int capacity, string type, DateTime checkIn, DateTime checkOut)
         {
-            List<Reserving> resrvings = new List<Reserving>();
-            List<Room> rooms = new List<Room>();
+            List<Reserving> reservings = new List<Reserving>();
+            List<Room> availableRooms = new List<Room>();
             using (MyDBContext context = new MyDBContext())
             {
-                resrvings = context.Reserving.ToList();
-                var types = (from typedb in context.TypeRoom
-                             where typedb.Categoria.ToLower() == type.ToLower()
-                             select new TypeRoom()
+                reservings = context.Reserving.ToList();
+                var rooms = (from roomdb in context.Room
+                             where roomdb.Capacity >= capacity
+                             && roomdb.TypeRoom.Categoria == type
+                             join typedb in context.TypeRoom on
+                             roomdb.IdType equals typedb.IdType
+                             select new Room()
                              {
-                                 IdType = typedb.IdType,
-                                 Categoria = typedb.Categoria,
-                                 Rooms = (from roomdb in context.Room
-                                          where roomdb.Capacity == capacity
-                                          select roomdb).ToList()
-                             }).ToList();
-                foreach(Reserving reserv in resrvings)
-                {
-                    foreach(TypeRoom type1 in types)
-                    {
-                        if(reserv.IdRoom == type1.Rooms[0].IdRoom)
-                        {
+                                 IdRoom = roomdb.IdRoom,
+                                 Capacity = roomdb.Capacity,
+                                 NumberOfRoom = roomdb.NumberOfRoom,
+                                 Price = roomdb.Price,
+                                 TypeRoom = new TypeRoom()
+                                 {
+                                     IdType = typedb.IdType,
+                                     Categoria = typedb.Categoria
+                                 }
 
-                        }
+
+                             }).ToList();
+
+                foreach (Room room in rooms)
+                {
+                    bool roomIsBooked = RoomIsBooked(room, reservings, checkIn, checkOut);
+                    if (roomIsBooked)
+                    {
+                        availableRooms.Add(room);
                     }
                 }
-                
             }
-
+            return availableRooms;
         }
 
+        private static bool RoomIsBooked(Room room, List<Reserving> reservings, DateTime checkIn, DateTime checkOut)
+        {
+            foreach (Reserving reserving in reservings)
+            {
+                if (reserving.IdRoom == room.IdRoom &&
+                    (reserving.CheckIn >= checkIn && reserving.CheckOut <= checkOut)
+                    ||
+                    reserving.IdRoom == room.IdRoom &&
+                    (reserving.CheckIn < checkIn && checkIn < reserving.CheckOut))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static void RemoveCustomer(Customer customer)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                context.Customer.Remove(customer);
+                context.SaveChanges();
+            }
+        }
     }
 }
+
+
+
+
+  
+
 
 

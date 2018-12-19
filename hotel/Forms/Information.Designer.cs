@@ -46,9 +46,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.label32 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -212,6 +210,7 @@
             this.button8.TabIndex = 51;
             this.button8.Text = "Забронировать";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // label32
             // 
@@ -233,16 +232,6 @@
             this.label24.TabIndex = 52;
             this.label24.Text = "Сумма";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(243, 389);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 20);
-            this.label4.TabIndex = 57;
-            this.label4.Text = "label4";
-            // 
             // label31
             // 
             this.label31.AutoSize = true;
@@ -252,16 +241,6 @@
             this.label31.Size = new System.Drawing.Size(60, 20);
             this.label31.TabIndex = 56;
             this.label31.Text = "label31";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(50, 389);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 20);
-            this.label5.TabIndex = 55;
-            this.label5.Text = "Сумма";
             // 
             // label23
             // 
@@ -278,9 +257,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 561);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label31);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label32);
             this.Controls.Add(this.label24);
@@ -326,9 +303,7 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label23;
     }
 }

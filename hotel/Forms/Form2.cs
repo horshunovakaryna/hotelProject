@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using hotel.Component;
 using hotel.DataBase;
 using hotel;
+using System.Text.RegularExpressions;
 
 namespace hotel.Forms
 {
@@ -33,9 +34,19 @@ namespace hotel.Forms
             dataGridView2.AllowUserToAddRows = false;
             dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
             dataGridView2.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            availableRoomGrid.Columns.AddRange(
+       new DataGridViewTextBoxColumn() { Name = "Доступные номера", DataPropertyName = "room", },
+       new DataGridViewTextBoxColumn() { Name = "clmIdd", DataPropertyName = "id" });
+            //availableRoomGrid.Columns["clmIdd"].Visible = false;
+            availableRoomGrid.AllowUserToAddRows = false;
+            availableRoomGrid.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
+            availableRoomGrid.DefaultCellStyle.SelectionForeColor = Color.White;
+
             comboBox1.Text = "Выберите категорию";
             string[] category = new string[] { "Эконом", "Стандарт", "Полуюкс", "Люкс", "Президентский номер" };
             comboBox1.Items.AddRange(category);
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -63,9 +74,25 @@ namespace hotel.Forms
 
         private void button8_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Information inform = new Information();
-            inform.ShowDialog();
+            Customer selectedCustomer = GetSelectedCustomer();
+            int id = GetSelectedRoom();
+            Room room = DBWorker.FindRoomById(id);
+            if (selectedCustomer.IdCustomer != 0 || id != 0)
+            {
+                //Console.Write(room.ToString());
+                DateTime date1 = Convert.ToDateTime(dateCheckIn.Text + "12:01:00");
+                DateTime date2 = Convert.ToDateTime(dateCheckOut.Text + "12:00:00");
+                int capacity = Convert.ToInt32(textCapacity.Text);
+                
+                this.Hide();
+                Information inform = new Information(selectedCustomer, date1, date2, room);
+                inform.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Выберите клиента");
+            }
+                
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -120,11 +147,34 @@ namespace hotel.Forms
                         customer.IdCustomer = (int)row.Cells[5].Value;
                         customer.FirstName = (string)row.Cells[0].Value;
                         customer.SecondName = (string)row.Cells[1].Value;
+                        customer.PassportInformation = (string)row.Cells[2].Value;
                     }
                 }
             }
             return customer;
         }
+
+        private int GetSelectedRoom()
+        {
+            //Room customer = new Customer();
+            int id = 1;
+            Int32 selectedRowCount = availableRoomGrid.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
+                foreach (DataGridViewRow row in availableRoomGrid.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        id = (int)row.Cells[1].Value;
+                       // customer.IdCustomer = (int)row.Cells[5].Value;
+                       // customer.FirstName = (string)row.Cells[0].Value;
+                       // customer.SecondName = (string)row.Cells[1].Value;
+                    }
+                }
+            }
+            return id;
+        }
+
 
         private DiscountCard GetSelectedCard()
         {
@@ -188,6 +238,67 @@ namespace hotel.Forms
                 MessageBox.Show("У клиента нет карты!");
             }
         }
-        
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //listBoxAvailableRoom.Items.Clear();
+           // this.listViewAvailableRoom.CheckBoxes = true;
+            
+            Regex regex = new Regex(@"/^\d+$/");
+            int capacity = 0;
+            DateTime date1 = Convert.ToDateTime(dateCheckIn.Text + "12:01:00");
+            DateTime date2 = Convert.ToDateTime(dateCheckOut.Text + "12:00:00");
+            //if (!regex.IsMatch(textCapacity.Text))
+           // {
+             //   MessageBox.Show("Выберете количество гостей!");
+           // }
+            //else
+           // {
+                capacity = Convert.ToInt32(textCapacity.Text);
+            // }
+            string type = comboBox1.Text;
+            if (date1.DayOfYear >= date2.DayOfYear)
+            {
+                MessageBox.Show("Даты выбранны некорректно!");
+            }
+            else
+            {
+                string selectedState = comboBox1.SelectedItem.ToString();
+                List<Room> rooms = DBWorker.SearchRoom(capacity, type, date1, date2);
+                /*string[] room = new string[rooms.Count];
+                for (int i = 0; i < rooms.Count; i++)
+                {
+                    room[i] = rooms[i].ToString();
+                }
+
+                availableRoomGrid.Items.AddRange(room);*/
+
+                foreach (Room room in rooms)
+                {
+                        availableRoomGrid.Rows.Add(
+                            room.ToString(),
+                        room.IdRoom
+                            );
+                    }
+                }
+        }
+
+        private void deleteCustomer_Click(object sender, EventArgs e)
+        {
+            Customer selectedCustomer = GetSelectedCustomer();
+            if (selectedCustomer.IdCustomer != 0)
+            {
+                DBWorker.RemoveCustomer(selectedCustomer);
+            }
+            else
+            {
+                MessageBox.Show("Выберите клиента");
+            }
+            dataGridView2.Rows.Clear();
+            textBox3.Clear();
+            MessageBox.Show("Клиент удален!");
+
+
+        }
     }
 }

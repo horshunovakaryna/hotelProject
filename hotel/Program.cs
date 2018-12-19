@@ -16,8 +16,11 @@ namespace hotel
         /// Главная точка входа для приложения.
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
-        {            
+        static void Main(string[] args) 
+        {
+            DateTime date1 = new DateTime(2018, 12, 20, 12, 01, 0);
+            DateTime date2 = new DateTime(2018, 12, 22, 12, 0, 0);
+            DBWorker.SearchRoom(2, "Эконом", date1, date2);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form2());
