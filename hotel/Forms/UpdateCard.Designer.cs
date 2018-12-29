@@ -96,6 +96,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxDiscount);
             this.Name = "UpdateCard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UpdateCard";
             this.ResumeLayout(false);
             this.PerformLayout();

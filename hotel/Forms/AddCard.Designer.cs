@@ -155,6 +155,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.addNewCard);
             this.Name = "AddCard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddCard";
             this.Load += new System.EventHandler(this.AddCard_Load);
             this.ResumeLayout(false);

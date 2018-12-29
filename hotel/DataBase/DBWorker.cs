@@ -202,7 +202,7 @@ namespace hotel.DataBase
             foreach (Reserving reserving in reservings)
             {
                 if (reserving.IdRoom == room.IdRoom &&
-                    (reserving.CheckIn >= checkIn && reserving.CheckOut <= checkOut)
+                   (reserving.CheckIn >= checkIn && reserving.CheckOut <= checkOut)
                     ||
                     reserving.IdRoom == room.IdRoom &&
                     (reserving.CheckIn < checkIn && checkIn < reserving.CheckOut))
