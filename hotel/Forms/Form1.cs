@@ -7,8 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using hotel;
+using hotel.Component;
+using hotel.DataBase;
 
-namespace hotel
+namespace hotel.Forms
 {
     public partial class Form1 : Form
     {
@@ -17,24 +20,25 @@ namespace hotel
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void checkIn(object sender, EventArgs e)
         {
-
+            this.Hide();
+            CheckIn checkInForm = new CheckIn();
+            checkInForm.ShowDialog();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void bookClick(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void cancelBook(object sender, EventArgs e)
         {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
+            this.Hide();
+            CancelBook cancelBook = new CancelBook();
+            cancelBook.ShowDialog();
         }
     }
 }

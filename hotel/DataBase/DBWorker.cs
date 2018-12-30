@@ -114,6 +114,16 @@ namespace hotel.DataBase
             }
         }
 
+        public static void UpdateReserving(int id)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                Reserving reserving = context.Reserving.Find(id);
+                reserving.Active = true;
+                context.Update(reserving);
+                context.SaveChanges();
+            }
+        }
 
         public static string GetLastCustomer()
         {
@@ -181,8 +191,6 @@ namespace hotel.DataBase
                                      IdType = typedb.IdType,
                                      Categoria = typedb.Categoria
                                  }
-
-
                              }).ToList();
 
                 foreach (Room room in rooms)
@@ -220,6 +228,58 @@ namespace hotel.DataBase
                 context.Customer.Remove(customer);
                 context.SaveChanges();
             }
+        }
+
+        public static void RemoveReserv(Reserving reserving)
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                context.Reserving.Remove(reserving);
+                context.SaveChanges();
+            }
+        }
+
+        public static List<Reserving> SelectReserving(String secondName)
+        {
+            List<Reserving> reservings = new List<Reserving>();
+            using (MyDBContext context = new MyDBContext())
+            {
+                var query = (from reservingdb in context.Reserving                           
+                             join customerdb in context.Customer
+                             on reservingdb.IdCustomer equals customerdb.IdCustomer
+                             join roomdb in context.Room
+                             on reservingdb.IdRoom equals roomdb.IdRoom 
+                             select new Reserving()
+                             {
+                                 IdReserving = reservingdb.IdReserving,
+                                 IdRoom = reservingdb.IdRoom,
+                                 IdCustomer = reservingdb.IdCustomer,
+                                 CheckIn = reservingdb.CheckIn,
+                                 CheckOut = reservingdb.CheckOut,
+                                 Active = reservingdb.Active,
+                                 Customer = new Customer()
+                                 {
+                                     IdCustomer = customerdb.IdCustomer,
+                                     FirstName = customerdb.FirstName,
+                                     SecondName = customerdb.SecondName,
+                                     PassportInformation = customerdb.PassportInformation
+                                 },               
+                                 Room = new Room()
+                                  {
+                                      IdRoom = roomdb.IdRoom,
+                                      Price = roomdb.Price
+                                 }
+                             }).ToList();
+                foreach (Reserving reserv in query)
+                {
+                    if (reserv.Customer.SecondName == secondName && reserv.Active != true)
+                    {
+                        reservings.Add(reserv);
+                    }
+                }
+
+            }
+            return reservings;
         }
     }
 }

@@ -31,18 +31,13 @@ namespace hotel.Forms
             label28.Text = customer.FirstName;
             label29.Text = customer.SecondName;
             label30.Text = customer.PassportInformation;
-            label33.Text = "";
-            //customer.DiscountCard.NumberCard
+            //label33.Text = customer.DiscountCard.NumberCard != "" ?
+         //       customer.DiscountCard.NumberCard : "-";
             label1.Text = date1.ToString();
             label2.Text = date2.ToString();
             label3.Text = "№" + room.NumberOfRoom.ToString();
             label32.Text = (night * room.Price).ToString();
             label31.Text = night.ToString();
-
-            
-
-
-
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -52,10 +47,12 @@ namespace hotel.Forms
 
         private void button8_Click(object sender, EventArgs e)
         {
-            bool active =false;
-            DateTime current = new DateTime();
-            //if (date1.DayOfYear == current.DayOfYear) active = true;
+            bool active = false;
+            if (date1.Date == DateTime.Today) active = true;
             DBWorker.Resrving(newCustomer, newRoom, date1, date2, active);
+            this.Hide();
+            MessageBox.Show("Номер забронирован", "Сообщение", MessageBoxButtons.OK);
+
         }
     }
 }

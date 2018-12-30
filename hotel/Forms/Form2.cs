@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using hotel.Component;
 using hotel.DataBase;
 using hotel;
-using System.Text.RegularExpressions;
+
 
 namespace hotel.Forms
 {
@@ -89,10 +89,6 @@ namespace hotel.Forms
                     UpdateList();
                 }
             }
-           /* else
-            {
-                MessageBox.Show("Даты выбранны некорректно!");
-            }*/
         }
 
         private void dateCheckOut_ValueChanged(object sender, EventArgs e)
@@ -171,6 +167,8 @@ namespace hotel.Forms
                 this.Hide();
                 Information inform = new Information(selectedCustomer, date1, date2, room);
                 inform.ShowDialog();
+                Form1 form1 = new Form1();
+                form1.Show();
             }
             else
             {

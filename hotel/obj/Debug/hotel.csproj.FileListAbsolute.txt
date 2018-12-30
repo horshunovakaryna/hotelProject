@@ -62,7 +62,6 @@ C:\Users\Karina\source\repos\hotel\hotel\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Karina\source\repos\hotel\hotel\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Karina\source\repos\hotel\hotel\bin\Debug\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Karina\source\repos\hotel\hotel\bin\Debug\Microsoft.EntityFrameworkCore.Relational.xml
-C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Form1.resources
 C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.Form2.resources
 C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.Information.resources
 C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.AddCard.resources
@@ -138,3 +137,6 @@ C:\Users\Karina\source\repos\hotel\hotel\bin\Debug\zh-CN\Microsoft.SqlServer.Tra
 C:\Users\Karina\source\repos\hotel\hotel\bin\Debug\zh-TW\Microsoft.SqlServer.TransactSql.ScriptDom.resources.dll
 C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.AddCustomer.resources
 C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.UpdateCard.resources
+C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.Form1.resources
+C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.CheckIn.resources
+C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.CancelBook.resources

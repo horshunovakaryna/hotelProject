@@ -30,12 +30,21 @@ namespace hotel.Forms
 
         private void addNewCard_Click(object sender, EventArgs e)
         {
-            DiscountCard discountCard = new DiscountCard();
-            discountCard.NumberCard = cardNumberText.Text;
-            discountCard.Discount = Convert.ToInt32(chooseDiscount.Text);
-            DBWorker.InsertCard(discountCard,newCustomer.IdCustomer);
-            this.Hide();
-            MessageBox.Show("Дисконтная карта добавленна", "Сообщение", MessageBoxButtons.OK);
+            int type = chooseDiscount.SelectedIndex;
+            if (type == -1)
+            {
+                MessageBox.Show("Чтобы продолжить, выберите сикдку", "Сообщение", MessageBoxButtons.OK);
+            }
+            else{
+                DiscountCard discountCard = new DiscountCard();
+                discountCard.NumberCard = cardNumberText.Text;
+                discountCard.Discount = Convert.ToInt32(chooseDiscount.Text);
+                DBWorker.InsertCard(discountCard, newCustomer.IdCustomer);
+                this.Hide();
+                MessageBox.Show("Дисконтная карта добавленна", "Сообщение", MessageBoxButtons.OK);
+            }
+           
+            
         }
 
         private void AddCard_Load(object sender, EventArgs e)
