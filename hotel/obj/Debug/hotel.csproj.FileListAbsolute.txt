@@ -140,3 +140,6 @@ C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.UpdateCard.resour
 C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.Form1.resources
 C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.CheckIn.resources
 C:\Users\Karina\source\repos\hotel\hotel\obj\Debug\hotel.Forms.CancelBook.resources
+C:\Users\Karina\source\repos\hotel\hotel\bin\Debug\Quartz.dll
+C:\Users\Karina\source\repos\hotel\hotel\bin\Debug\Quartz.pdb
+C:\Users\Karina\source\repos\hotel\hotel\bin\Debug\Quartz.xml

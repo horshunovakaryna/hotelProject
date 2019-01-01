@@ -30,13 +30,29 @@ namespace hotel.Forms
             if (CheckRequiredData() && CheckCorrectData())
             {
                 Customer customer = new Customer();
+                
                 customer.FirstName = firstNameText.Text;
                 customer.SecondName = secondNameText.Text;
                 customer.PassportInformation = passportText.Text;
-                DBWorker.InsertCustomer(customer);
-                this.Hide();
-                MessageBox.Show("Новый клиент добавленн", 
-                    "Сообщение", MessageBoxButtons.OK);
+
+                string pattern = @"[a-zA-Z]+";
+                if (Regex.IsMatch(customer.FirstName, pattern, RegexOptions.IgnoreCase)
+                    || Regex.IsMatch(customer.SecondName, pattern, RegexOptions.IgnoreCase))
+                {
+                    DBWorker.InsertCustomer(customer);
+                    this.Hide();
+                    MessageBox.Show("Новый клиент добавленн",
+                        "Сообщение", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    if (CheckCorrectPassport()) {
+                        DBWorker.InsertCustomer(customer);
+                        this.Hide();
+                        MessageBox.Show("Новый клиент добавленн",
+                            "Сообщение", MessageBoxButtons.OK);
+                    }
+                }         
             }
         }
 
@@ -61,6 +77,20 @@ namespace hotel.Forms
                 return true;
             }
             MessageBox.Show("Для ввода имени и фамилии используйте только буквы", 
+                "Сообщение", MessageBoxButtons.OK);
+            return false;
+        }
+
+        private bool CheckCorrectPassport()
+        {
+            string pattern = @"^[А-ГҐДЕЄЖЗИІЇЙК-Я]{2}-\d{6}$";
+            string pattern1 = @"^\d{9}$";
+            if (Regex.IsMatch(passportText.Text, pattern, RegexOptions.IgnoreCase)
+                || Regex.IsMatch(passportText.Text, pattern1, RegexOptions.IgnoreCase))
+            {
+                return true;
+            }
+            MessageBox.Show("Номер пасспорта введен не корректно! Используйте формат МТ-123456 или 123456789123",
                 "Сообщение", MessageBoxButtons.OK);
             return false;
         }

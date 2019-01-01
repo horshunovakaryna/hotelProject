@@ -74,5 +74,17 @@ namespace hotel.Forms
             }
             return id;
         }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 form1 = new Form1();
+            form1.ShowDialog();
+        }
+
+        private void CloseApplication(object sender, FormClosedEventArgs e)
+        {
+           Application.Exit();
+        }
     }
 }

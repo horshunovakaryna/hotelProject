@@ -33,10 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.checkInBookViev = new System.Windows.Forms.DataGridView();
-            this.searchBox = new System.Windows.Forms.TextBox();
-            this.searchButton = new System.Windows.Forms.Button();
-            this.buttonCheckIn = new System.Windows.Forms.Button();
-            this.buttonBack = new System.Windows.Forms.Button();
             this.clmFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSecondName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPassport = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,6 +40,10 @@
             this.clmCheckOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSumma = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchBox = new System.Windows.Forms.TextBox();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.buttonCheckIn = new System.Windows.Forms.Button();
+            this.buttonBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.checkInBookViev)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,51 +100,6 @@
             this.checkInBookViev.Size = new System.Drawing.Size(666, 220);
             this.checkInBookViev.TabIndex = 26;
             // 
-            // searchBox
-            // 
-            this.searchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.searchBox.Location = new System.Drawing.Point(14, 30);
-            this.searchBox.Margin = new System.Windows.Forms.Padding(0);
-            this.searchBox.MaximumSize = new System.Drawing.Size(550, 30);
-            this.searchBox.MinimumSize = new System.Drawing.Size(160, 30);
-            this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(532, 30);
-            this.searchBox.TabIndex = 27;
-            // 
-            // searchButton
-            // 
-            this.searchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.searchButton.Location = new System.Drawing.Point(564, 28);
-            this.searchButton.Margin = new System.Windows.Forms.Padding(0);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(116, 32);
-            this.searchButton.TabIndex = 28;
-            this.searchButton.Text = "Поиск";
-            this.searchButton.UseVisualStyleBackColor = true;
-            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
-            // 
-            // buttonCheckIn
-            // 
-            this.buttonCheckIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCheckIn.Location = new System.Drawing.Point(520, 342);
-            this.buttonCheckIn.Name = "buttonCheckIn";
-            this.buttonCheckIn.Size = new System.Drawing.Size(160, 55);
-            this.buttonCheckIn.TabIndex = 29;
-            this.buttonCheckIn.Text = "Поселить гостя";
-            this.buttonCheckIn.UseVisualStyleBackColor = true;
-            this.buttonCheckIn.Click += new System.EventHandler(this.buttonCheckIn_Click);
-            // 
-            // buttonBack
-            // 
-            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonBack.Location = new System.Drawing.Point(14, 331);
-            this.buttonBack.Name = "buttonBack";
-            this.buttonBack.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonBack.Size = new System.Drawing.Size(155, 55);
-            this.buttonBack.TabIndex = 30;
-            this.buttonBack.Text = "Вернуться назад";
-            this.buttonBack.UseVisualStyleBackColor = true;
-            // 
             // clmFirstName
             // 
             this.clmFirstName.DataPropertyName = "FirstName";
@@ -195,6 +150,52 @@
             this.clmId.ReadOnly = true;
             this.clmId.Visible = false;
             // 
+            // searchBox
+            // 
+            this.searchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.searchBox.Location = new System.Drawing.Point(14, 30);
+            this.searchBox.Margin = new System.Windows.Forms.Padding(0);
+            this.searchBox.MaximumSize = new System.Drawing.Size(550, 30);
+            this.searchBox.MinimumSize = new System.Drawing.Size(160, 30);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(532, 26);
+            this.searchBox.TabIndex = 27;
+            // 
+            // searchButton
+            // 
+            this.searchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.searchButton.Location = new System.Drawing.Point(564, 28);
+            this.searchButton.Margin = new System.Windows.Forms.Padding(0);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(116, 32);
+            this.searchButton.TabIndex = 28;
+            this.searchButton.Text = "Поиск";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // buttonCheckIn
+            // 
+            this.buttonCheckIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCheckIn.Location = new System.Drawing.Point(520, 342);
+            this.buttonCheckIn.Name = "buttonCheckIn";
+            this.buttonCheckIn.Size = new System.Drawing.Size(160, 55);
+            this.buttonCheckIn.TabIndex = 29;
+            this.buttonCheckIn.Text = "Поселить гостя";
+            this.buttonCheckIn.UseVisualStyleBackColor = true;
+            this.buttonCheckIn.Click += new System.EventHandler(this.buttonCheckIn_Click);
+            // 
+            // buttonBack
+            // 
+            this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonBack.Location = new System.Drawing.Point(14, 331);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonBack.Size = new System.Drawing.Size(155, 55);
+            this.buttonBack.TabIndex = 30;
+            this.buttonBack.Text = "Вернуться назад";
+            this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+            // 
             // CheckIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -208,6 +209,7 @@
             this.Name = "CheckIn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CheckIn";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CloseApplication);
             ((System.ComponentModel.ISupportInitialize)(this.checkInBookViev)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

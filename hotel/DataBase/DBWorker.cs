@@ -51,7 +51,26 @@ namespace hotel.DataBase
         {
             using (MyDBContext context = new MyDBContext())
             {
-                return context.Customer.Find(id);
+                return (from customerdb in context.Customer
+                        where customerdb.IdCustomer == id
+                        join discountdb in context.DiscountCard
+                        on customerdb.IdCard equals discountdb.IdCard into disc
+                        from d in disc.DefaultIfEmpty()
+                        select new Customer()
+                        {
+                            IdCustomer = customerdb.IdCustomer,
+                            FirstName = customerdb.FirstName,
+                            SecondName = customerdb.SecondName,
+                            PassportInformation = customerdb.PassportInformation,
+                            IdCard = customerdb.IdCard == null ? 0 : customerdb.IdCard,
+                            DiscountCard =
+                             new DiscountCard()
+                             {
+                                 IdCard = d.IdCard == null ? 0 : d.IdCard,
+                                 NumberCard = d.NumberCard == null ? " " : d.NumberCard,
+                                 Discount = d.Discount == null ? 0 : d.Discount
+                             }
+                        }).SingleOrDefault();
             }
         }
 
@@ -280,6 +299,32 @@ namespace hotel.DataBase
 
             }
             return reservings;
+        }
+
+        public static void RemoveReservings()
+        {
+            using (MyDBContext context = new MyDBContext())
+            {
+                DateTime currentDate = DateTime.Today.AddHours(13);
+                var query = (from reservingdb in context.Reserving
+                             where (reservingdb.Active == false && reservingdb.CheckIn.Date < DateTime.Today) ||
+                              (reservingdb.Active == false && reservingdb.CheckIn == currentDate)
+                             select new Reserving()
+                             {
+                                 IdReserving = reservingdb.IdReserving,
+                                 IdRoom = reservingdb.IdRoom,
+                                 IdCustomer = reservingdb.IdCustomer,
+                                 CheckIn = reservingdb.CheckIn,
+                                 CheckOut = reservingdb.CheckOut,
+                                 Active = reservingdb.Active
+                             }).ToList();
+
+                foreach (Reserving reserv in query)
+                {
+                    context.Reserving.Remove(reserv);
+                    context.SaveChanges();
+                }
+            }
         }
     }
 }

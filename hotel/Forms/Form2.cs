@@ -38,7 +38,6 @@ namespace hotel.Forms
                 }
                 else
                 {
-                    this.Hide();
                     AddCard addCard = new AddCard(selectedCustomer);
                     addCard.ShowDialog();
                     FillGrid(textBox3.Text);
@@ -54,10 +53,9 @@ namespace hotel.Forms
 
         private void UpdateCard_Click(object sender, EventArgs e)
         {
-            DiscountCard selectedCard = GetSelectedCard();           
+            DiscountCard selectedCard = GetSelectedCard();
             if (selectedCard.IdCard != 0)
             {
-                this.Hide();
                 UpdateCard addCard = new UpdateCard(selectedCard);
                 addCard.ShowDialog();
                 FillGrid(textBox3.Text);
@@ -68,7 +66,7 @@ namespace hotel.Forms
                 MessageBox.Show("У клиента нет карты!");
             }
         }
-      
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (checkDate())
@@ -79,7 +77,7 @@ namespace hotel.Forms
                 }
             }
         }
-    
+
         private void dateCheckIn_ValueChanged(object sender, EventArgs e)
         {
             if (checkDate())
@@ -135,7 +133,9 @@ namespace hotel.Forms
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Form1 form1 = new Form1();
+            form1.ShowDialog();
         }
 
         private void search_Click(object sender, EventArgs e)
@@ -147,7 +147,6 @@ namespace hotel.Forms
 
         private void addClient_Click(object sender, EventArgs e)
         {
-            this.Hide();
             AddCustomer addCard = new AddCustomer();
             addCard.ShowDialog();
             FillGrid(DBWorker.GetLastCustomer());
@@ -159,27 +158,51 @@ namespace hotel.Forms
             Customer selectedCustomer = GetSelectedCustomer();
             int id = GetSelectedRoom();
             Room room = DBWorker.FindRoomById(id);
-            if (selectedCustomer.IdCustomer != 0 && id != 0)
+            if (selectedCustomer.IdCustomer != 0)
             {
-                DateTime date1 = Convert.ToDateTime(dateCheckIn.Text + "13:00:00");
-                DateTime date2 = Convert.ToDateTime(dateCheckOut.Text + "12:00:00");
-                int capacity = (int) numericCapacity.Value;
-                this.Hide();
-                Information inform = new Information(selectedCustomer, date1, date2, room);
-                inform.ShowDialog();
-                Form1 form1 = new Form1();
-                form1.Show();
+                if (id != 0)
+                {
+                    DateTime date1 = Convert.ToDateTime(dateCheckIn.Text + "13:00:00");
+                    DateTime date2 = Convert.ToDateTime(dateCheckOut.Text + "12:00:00");
+                    int capacity = (int)numericCapacity.Value;
+                    Information inform = new Information(selectedCustomer, date1, date2, room);
+                    inform.ShowDialog();
+                    availableRoomGrid.Rows.Clear();
+                    numericCapacity.Value = 1;
+                    comboBox1.Text = "Выберите категорию";
+                    dateCheckIn.Value = DateTime.Today;
+                    dateCheckOut.Value = DateTime.Today.AddDays(1);
+                    this.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Чтобы продолжить, выберите комнату");
+                }
             }
             else
             {
-                MessageBox.Show("Выберите клиента");
+                MessageBox.Show("Чтобы продолжить, выберите клиента");
             }
         }
 
         private Customer GetSelectedCustomer()
         {
+            DataGridViewRow row = dataGridView2.CurrentRow;
             Customer customer = new Customer();
-            Int32 selectedRowCount = dataGridView2.Rows.GetRowCount(DataGridViewElementStates.Selected);
+
+            if (row != null)
+            {
+                customer = DBWorker.FindCustomerById((int)row.Cells[5].Value);
+                Console.WriteLine("meo "+customer.DiscountCard.NumberCard);
+                /*customer.IdCustomer = (int)row.Cells[5].Value;
+                customer.FirstName = (string)row.Cells[0].Value;
+                customer.SecondName = (string)row.Cells[1].Value;
+                customer.DiscountCard.NumberCard = (string)row.Cells[3].Value;
+                customer.DiscountCard.Discount = (int)row.Cells[4].Value;
+                customer.PassportInformation = (string)row.Cells[2].Value;*/
+            }
+
+            /*Int32 selectedRowCount = dataGridView2.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount > 0)
             {
                 foreach (DataGridViewRow row in dataGridView2.Rows)
@@ -189,10 +212,12 @@ namespace hotel.Forms
                         customer.IdCustomer = (int)row.Cells[5].Value;
                         customer.FirstName = (string)row.Cells[0].Value;
                         customer.SecondName = (string)row.Cells[1].Value;
+                        customer.DiscountCard.NumberCard = (string)row.Cells[3].Value;
+                        customer.DiscountCard.Discount = (int)row.Cells[4].Value;
                         customer.PassportInformation = (string)row.Cells[2].Value;
                     }
                 }
-            }
+            }*/
             return customer;
         }
 
@@ -235,8 +260,7 @@ namespace hotel.Forms
         private void FillGrid(string searchText)
         {
             dataGridView2.Rows.Clear();
-            List<Customer> customers = new List<Customer>();
-            customers = DBWorker.SelectCustomer(searchText);
+            List<Customer> customers = DBWorker.SelectCustomer(searchText);
             foreach (Customer cust in customers)
             {
                 if (cust.IdCard == 0)
@@ -265,8 +289,7 @@ namespace hotel.Forms
             DateTime date2 = Convert.ToDateTime(dateCheckOut.Text + "12:00:00");
             if (date1 >= date2 || date1 <= DateTime.Today || date2 < DateTime.Today)
             {
-                dateCheckIn.Value = DateTime.Today;
-                dateCheckOut.Value = DateTime.Today.AddDays(1);
+                dateCheckOut.Value = dateCheckIn.Value.AddDays(1);
                 return false;
             }
             return true;
@@ -297,6 +320,11 @@ namespace hotel.Forms
                 availableRoomGrid.Rows.Add(room.ToString(), room.IdRoom);
             }
 
+        }
+
+        private void CloseApplication(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

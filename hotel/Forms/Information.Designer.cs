@@ -270,6 +270,7 @@
             this.buttonBack.TabIndex = 57;
             this.buttonBack.Text = "Назад";
             this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // groupBox1
             // 

@@ -40,5 +40,15 @@ namespace hotel.Forms
             CancelBook cancelBook = new CancelBook();
             cancelBook.ShowDialog();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CloseApplication(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

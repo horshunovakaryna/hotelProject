@@ -68,7 +68,12 @@ namespace hotel.Component
         public int IdCustomer { get; set; }
         public Customer Customer { get; set; }
 
-    
+        public String ToString()
+        {
+            return "айди  " +IdReserving+ "Дата заезда " + CheckIn + "Дата выезда  " + CheckOut +
+                "Статус " + Active;
+        }
+
     }
 
     public class TypeRoom
